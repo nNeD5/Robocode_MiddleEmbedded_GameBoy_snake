@@ -31,19 +31,19 @@ class GameBoy {
     public:
        int maxDevices=2;
        const int addr=1;
-       bool display[8][16]; 
+       bool display[8][16];
 	   byte block[4][4][4];
-        /* 
-         * Create a new controler 
+        /*
+         * Create a new controler
          * Params :
          * dataPin		pin on the Arduino where data gets shifted out
          * clockPin		pin for the clock
-         * csPin		pin for selecting the device 
+         * csPin		pin for selecting the device
          * numDevices	maximum number of devices that can be controled
          */
         GameBoy();
 
-        /* 
+        /*
          * Set the shutdown (power saving) mode for the device
          * Params :
          * addr	The address of the display to control
@@ -54,7 +54,7 @@ class GameBoy {
 
 		void sound(int melody);
 
-        /* 
+        /*
          * Set the brightness of the display.
          * Params:
          * addr		the address of the display to control
@@ -62,20 +62,20 @@ class GameBoy {
          */
         void setIntensity(int intensity);
 
-        /* 
-         * Switch all Leds on the display off. 
+        /*
+         * Switch all Leds on the display off.
          * Params:
          * addr	address of the display to control
          */
         void clearDisplay();
 
-        /* 
+        /*
          * Set the status of a single Led.
          * Params :
-         * addr	address of the display 
+         * addr	address of the display
          * row	the row of the Led (0..7)
          * col	the column of the Led (0..7)
-         * state	If true the led is switched on, 
+         * state	If true the led is switched on,
          *		if false it is switched off
          */
         void setLed(int row, int col, boolean state);
@@ -87,12 +87,12 @@ class GameBoy {
         void testMatrix(short int delaytime);
         /*
         Заносит в масив данных статический элемент картинки на дисплее
-        х и у - координаты точки. 
+        х и у - координаты точки.
          */
-        void memDisplay(short int x,short int y);  
+        void memDisplay(short int x,short int y);
         /*
-        Включает один пиксель на дисплее, без запоминания в память. 
-        */ 
+        Включает один пиксель на дисплее, без запоминания в память.
+        */
         void drawPoint(int x,int y);
         /*
         Выключает один пиксель на дисплее, без стирания из памяти
@@ -104,7 +104,7 @@ class GameBoy {
         */
         bool checkCollision(int x, int y);
         /*
-        Отрисовывает матрицу которая содержит в себе сохраненные точки установленные в высокий уровень. 
+        Отрисовывает матрицу которая содержит в себе сохраненные точки установленные в высокий уровень.
         */
         void drawDisplay();
         /*
@@ -116,15 +116,15 @@ class GameBoy {
         */
         void clearLine(byte num_line);
         /*
-        заставляет падать все точки которые занесены в память дисплея вниз. 
+        заставляет падать все точки которые занесены в память дисплея вниз.
         */
         void gravity(int vector_name);
         /*
-        Изменяет положение точки, старое положение удаляет, новое отрисовывает. 
+        Изменяет положение точки, старое положение удаляет, новое отрисовывает.
         */
         int moveX(int start_x, int start_y,int left_x,int right_x, int move_var);
         /*
-        Ищет заполненную линию в памяти дисплея и очищает ее. 
+        Ищет заполненную линию в памяти дисплея и очищает ее.
         */
         int fullLine();
         /*
@@ -132,7 +132,7 @@ class GameBoy {
         Так же проверяет не выходит ли за границы дисплея данный пиксель.
         */
         bool isFree(int x,int y);
-        
+
         /*
          keyCode=1; KEY1
          keyCode=2; KEY2
@@ -142,14 +142,14 @@ class GameBoy {
          keyCode=6; Left
         */
         int getKey();
-        
+
 
         void begin(int Intensity);
-		
+
 		void generateBlock(byte block[4][4][4], byte arr1[4][4], byte arr2[4][4], byte arr3[4][4], byte arr4[4][4]);
-		
+
 		void memBlock(byte arr[4][4], int x, int y);
-		
+
 		bool checkBlockCollision(byte arr[4][4], int x, int y);
 };
 

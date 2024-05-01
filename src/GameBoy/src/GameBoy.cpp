@@ -56,7 +56,7 @@ void GameBoy::sound(int melody) {
 }
 
 void GameBoy::shutdown(bool b) {
-   
+
     if(b){
         spiTransfer(addr, OP_SHUTDOWN,0);
         spiTransfer(addr-1, OP_SHUTDOWN,0);
@@ -68,7 +68,7 @@ void GameBoy::shutdown(bool b) {
 }
 
 void GameBoy::setIntensity(int intensity) {
-    if(intensity>=0 && intensity<16)	
+    if(intensity>=0 && intensity<16)
         spiTransfer(addr, OP_INTENSITY,intensity);
         spiTransfer(addr-1, OP_INTENSITY,intensity);
 }
@@ -85,14 +85,14 @@ void GameBoy::clearDisplay() {
     status[offset2+i]=0;
     spiTransfer((addr-1), i+1,status[offset2+i]);
     }
-    
+
 }
 void GameBoy::setLed(int row, int column, boolean state) {
     if(column>=8){
         column=abs(column-8);
     int offset;
     byte val=0x00;
-    
+
     offset=(addr-1)*8;
     val=B10000000 >> column;
     if(state)
@@ -118,7 +118,7 @@ void GameBoy::setLed(int row, int column, boolean state) {
     }
         spiTransfer(addr, abs(row-8),status[offset+row]);
     }
-    
+
 }
 void GameBoy::spiTransfer(int addr, volatile byte opcode, volatile byte data) {
     //Create an array with the data to shift out
@@ -130,14 +130,14 @@ void GameBoy::spiTransfer(int addr, volatile byte opcode, volatile byte data) {
     //put our device data into the array
     spidata[offset+1]=opcode;
     spidata[offset]=data;
-    //enable the line 
+    //enable the line
     digitalWrite(SPI_CS,LOW);
-    //Now shift out the data 
+    //Now shift out the data
     for(int i=maxbytes;i>0;i--)
         shiftOut(SPI_MOSI,SPI_CLK,MSBFIRST,spidata[i-1]);
     //latch the data onto the display
     digitalWrite(SPI_CS,HIGH);
-}  
+}
 
 void GameBoy::testMatrix(short int delaytime){
 for(int x = 0; x < 8; x++){
@@ -145,7 +145,7 @@ for(int x = 0; x < 8; x++){
         setLed(x, y, true);
         delay(delaytime);
     }
-} 
+}
 delay(delaytime * 10);
 clearDisplay();
 delay(delaytime / 10);
@@ -155,7 +155,7 @@ for(int y1 = 0; y1 < 16; y1++){
         delay(delaytime);
     }
 }
-clearDisplay();       
+clearDisplay();
 }
 
 void GameBoy::memDisplay(short int x, short int y){
@@ -199,7 +199,7 @@ void GameBoy::drawDisplay(){
 bool GameBoy::chekState(int x, int y){
         if(display[x][y] == 1) return true;
         else false;
-} 
+}
 
 bool GameBoy::isFree(int x,int y){
     if(x<8 && x>-1){
@@ -207,7 +207,7 @@ bool GameBoy::isFree(int x,int y){
         else return true;
     }
     else return false;
-}      
+}
 int GameBoy::moveX(int start_x, int start_y,int left_x,int right_x, int move_var ){
     if(getKey() == 4){
         if(display[start_x-move_var-right_x][start_y]==1||start_x-move_var-right_x<0) return 0;
@@ -224,7 +224,7 @@ void GameBoy::clearLine(byte num_line){
         display[x][num_line] = false;
         setLed(x, num_line, 0);
     }
-}        
+}
 int GameBoy::fullLine(){
     int lines = 0;
     bool res = false;
@@ -239,7 +239,7 @@ int GameBoy::fullLine(){
             lines++;
             res = true;
             clearLine(y);
-            for(int _y = y; _y > 0; _y--){  
+            for(int _y = y; _y > 0; _y--){
                 for(int x = 0; x < 8; x++){
                     display[x][_y] = display[x][_y-1];
                 }
@@ -271,7 +271,7 @@ void GameBoy::begin(int Intensity){
 	random(0,7);
 }
 
-/* UPDATE */ 
+/* UPDATE */
 
 void GameBoy::generateBlock(byte block[4][4][4], byte arr1[4][4], byte arr2[4][4], byte arr3[4][4], byte arr4[4][4] ) {
   for (int i = 0; i < 4; i++) {
