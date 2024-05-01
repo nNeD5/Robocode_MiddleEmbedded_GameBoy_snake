@@ -1,4 +1,4 @@
-#include <GameBoy.h>
+#include "src/GameBoy/src/GameBoy.h"
 
 GameBoy gb;
 

@@ -1,0 +1,34 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+GameBoy	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+shutdown	KEYWORD2
+sound		KEYWORD2
+setIntensity	KEYWORD2
+clearDisplay	KEYWORD2
+setLed	KEYWORD2
+testMatrix	KEYWORD2
+memDisplay	KEYWORD2
+drawPoint	KEYWORD2
+wipePoint	KEYWORD2
+chekCollision	KEYWORD2
+drawDisplay	KEYWORD2
+chekState	KEYWORD2
+block		LITERAL1
+checkBlockCollision	KEYWORD2
+generateBlock		KEYWORD2
+getKey		KEYWORD2
+isFree  KEYWORD2
+######################################
+# Constants (LITERAL1)
+#######################################
+KEY_NONE	LITERAL1
