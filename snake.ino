@@ -14,7 +14,7 @@ int dir_x, dir_y;
 int food_x, food_y;
 
 void setup() {
-	Serial.begin(9600);
+  Serial.begin(9600);
   gb.begin(7);
 
   randomSeed(analogRead(A0));
@@ -31,7 +31,7 @@ void setup() {
 void loop() {
   change_dir();
   move_snake();
-	check_game_over();
+  check_game_over();
   check_food();
   draw();
 }
@@ -75,30 +75,30 @@ void move_snake() {
 }
 
 void check_game_over() {
-	for (int i = 1; i < snake_len; ++i) {
-		if (snake_x[0] == snake_x[i] && snake_y[0] == snake_y[i]) {
-			gb.sound(COLLISION);
-			gb.clearDisplay();
+  for (int i = 1; i < snake_len; ++i) {
+    if (snake_x[0] == snake_x[i] && snake_y[0] == snake_y[i]) {
+      gb.sound(COLLISION);
+      gb.clearDisplay();
 
-			for (int x = 0; x < 8; ++x) {
-				for (int y = 0; y < 16; ++y) {
-					gb.drawPoint(x, y);
-					delay(50);
-				}
-			}
+      for (int x = 0; x < 8; ++x) {
+        for (int y = 0; y < 16; ++y) {
+          gb.drawPoint(x, y);
+          delay(50);
+        }
+      }
 
-			snake_len = 1;
-			snake_x[0] = random(8);
-			snake_y[0] = random(16);
-			dir_x = 0;
-			dir_y = 0;
-		}
-	}
+      snake_len = 1;
+      snake_x[0] = random(8);
+      snake_y[0] = random(16);
+      dir_x = 0;
+      dir_y = 0;
+    }
+  }
 }
 
 void check_food() {
   if (snake_x[0] == food_x && snake_y[0] == food_y) {
-		gb.sound(SCORE);
+    gb.sound(SCORE);
     food_x = random(8);
     food_y = random(16);
 
@@ -116,4 +116,3 @@ void draw() {
     gb.drawPoint(snake_x[i], snake_y[i]);
   }
 }
-
