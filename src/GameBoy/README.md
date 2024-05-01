@@ -1,2 +1,2 @@
 # GameBoy
-Its a first project with using GitHub. 
+Its a first project with using GitHub.
